@@ -6,7 +6,7 @@ import { HTTPError, INVALID_REQUEST } from '../httpError';
 
 const ajv = new Ajv();
 addFormats(ajv)
-export const validate = (schema: object) => {
+const validate = (schema: object) => {
     const validateFn = ajv.compile(schema);
 
     return (req: Request, res: Response, next: NextFunction) => {
@@ -19,3 +19,5 @@ export const validate = (schema: object) => {
         next();
     };
 }
+
+export default validate;

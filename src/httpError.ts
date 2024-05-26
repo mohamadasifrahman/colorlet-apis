@@ -16,7 +16,7 @@ export const UNAUTHORIZED: { errorCode: string, statusCode: HTTPStatusCode } = {
 
 export const FORBIDDEN: { errorCode: string, statusCode: HTTPStatusCode } = {
     errorCode: 'forbidden',
-    statusCode: 400
+    statusCode: 403
 }
 
 export const RESOURCE_NOT_FOUND: { errorCode: string, statusCode: HTTPStatusCode } = {
