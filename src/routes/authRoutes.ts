@@ -7,6 +7,6 @@ import { getLoginOptions } from '../schemas/authSchemas';
 
 const authRoute: Router = Router();
 
-authRoute.post('/login', validate(getLoginOptions), controllerWrapper(authController.getLoginOptions));
+authRoute.post('/get-login-options', validate(getLoginOptions), controllerWrapper(authController.getLoginOptions));
 
 export default authRoute;

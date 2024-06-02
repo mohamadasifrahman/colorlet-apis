@@ -20,18 +20,17 @@ export function createServer(): Application {
     app.use(express.urlencoded({ extended: true, limit: '40mb' }));
     app.use(cors(corsOptions));
 
-    app.use(helmet);
+    app.use(helmet());
 
     app.use(httpLogger);
 
-    app.get('/ping', (req: Request, res: Response, next: NextFunction) => {
+    app.get('/ping', (req: Request, res: Response) => {
         res.send('pong');
-        next();
     })
 
     app.use('/v1', v1Router);
 
-    app.use((req: Request, res: Response, next: NextFunction) => {
+    app.use((req: Request, res: Response) => {
         throw new HTTPError(RESOURCE_NOT_FOUND.statusCode, RESOURCE_NOT_FOUND.errorCode, 'URL not found', '');
     })
 

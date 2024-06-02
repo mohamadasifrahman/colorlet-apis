@@ -6,16 +6,17 @@ import { HTTPError, INTERNAL_SERVER_ERROR } from '../httpError';
 
 const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
 
-    if (error instanceof HTTPError) {
+    if (!error) {
+        return next();
+    } else if (error instanceof HTTPError) {
         res.status(error.statusCode).send({
             code: error.errorCode,
             message: error.message
         })
-
     } else {
         res.status(INTERNAL_SERVER_ERROR.statusCode).send({
             code: INTERNAL_SERVER_ERROR.errorCode,
-            message: error.message
+            message: 'something unexpected happened'
         })
     }
 
